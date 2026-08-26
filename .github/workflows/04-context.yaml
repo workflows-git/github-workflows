@@ -23,8 +23,18 @@ jobs:
         run: |
           echo "Project: ${{ env.project }}"
           echo "Environment: ${{ env.environment }}"
-          
+
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+
+      - name: adding new variables
+        run: |
+          echo "devops_sir=Siva" >> $GITHUB_ENV  
+          echo "linux_sir=Srikanth" >> $GITHUB_ENV 
+
+      - name: accessing previous step variables
+        run: |
+          echo "Devops sir: $devops_sir"
+          echo "Linux sir: $linux_sir"
