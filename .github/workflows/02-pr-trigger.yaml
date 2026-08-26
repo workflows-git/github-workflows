@@ -1,0 +1,20 @@
+name: pull request Workflow
+# triggers
+on:
+  pull_request:
+    types: [opened, reopened]
+       
+# A workflow run is made up of one or more jobs
+jobs:
+  say-hello:
+    # The type of runner that the job will run on (similar to jenkins agent)
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Prints a greeting to the runner console
+      - name: Run Hello World
+        run: echo "Hello, World GitHub Actions!"
+
+      - name: getting the event data
+        run: cat "$GITHUB_EVENT_PATH"
