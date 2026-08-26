@@ -5,6 +5,7 @@ on:
         - 'main'
 jobs:
   feature-pipeline:
+    #this is calling centralized workflow
     uses: workflows-git/workflows/.github/workflows/nodejs-eks-feature.yaml@main  # Reference local path if in the same repository
     with:
       project: 'roboshop' 
