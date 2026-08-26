@@ -23,3 +23,8 @@ jobs:
         run: |
           echo "Project: ${{ env.project }}"
           echo "Environment: ${{ env.environment }}"
+          
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
