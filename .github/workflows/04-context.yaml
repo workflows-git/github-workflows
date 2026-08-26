@@ -13,7 +13,7 @@ jobs:
     # The type of runner that the job will run on (similar to jenkins agent)
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version.outputs.VERSION }}
+      version_id: ${{ steps.version.outputs.VERSION }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Step 1: Prints a greeting to the runner console
@@ -52,4 +52,5 @@ jobs:
     needs: first-job
     steps:
       - name: accessing outputs from first job
-        run: echo "Version: ${{ needs.first-job.outputs.version }}"
+        run: |
+          echo "Version: ${{ needs.first-job.outputs.version_id }}"
