@@ -3,7 +3,7 @@ name: conditions Workflow
 # triggers
 on:
   push:
-
+#concurrency
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} # conditions-main
   cancel-in-progress: false # we can trigger workflow 
