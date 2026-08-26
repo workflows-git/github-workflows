@@ -9,10 +9,11 @@ env:
        
 # A workflow run is made up of one or more jobs
 jobs:
-  context-job:
+  first-job:
     # The type of runner that the job will run on (similar to jenkins agent)
     runs-on: ubuntu-latest
-
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Step 1: Prints a greeting to the runner console
@@ -34,7 +35,21 @@ jobs:
           echo "devops_sir=Siva" >> $GITHUB_ENV  
           echo "linux_sir=Srikanth" >> $GITHUB_ENV 
 
+
       - name: accessing previous step variables
         run: |
           echo "Devops sir: $devops_sir"
           echo "Linux sir: $linux_sir"
+
+      - name: exporting outputs to other job
+        id: version # An ID is required to reference this step's outputs
+        run: |
+          # Create your value dynamically
+          echo "VERSION=4.0.0" >> "$GITHUB_OUTPUT"
+
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name: accessing outputs from first job
+        run: echo "Version: ${{ needs.first-job.outputs.version }}"
