@@ -1,0 +1,41 @@
+name: Input data  Workflow
+
+# triggers
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+       
+# A workflow run is made up of one or more jobs
+jobs:
+  get-inputs:
+    # The type of runner that the job will run on (similar to jenkins agent)
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Prints a greeting to the runner console
+      - name: Run Hello World
+        run: echo "Hello, World GitHub Actions!"
+
+      - name: Print inputs
+        run: |
+          echo "Log level: ${{ inputs.logLevel }}"
+          echo "Tags: ${{ inputs.tags }}"
+          echo "Environment: ${{ inputs.environment }}"
