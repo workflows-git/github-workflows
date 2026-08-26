@@ -3,6 +3,7 @@ name: Hello World Workflow
 # triggers
 on:
   push:
+  workflow_dispatch:
        
 # A workflow run is made up of one or more jobs
 jobs:
