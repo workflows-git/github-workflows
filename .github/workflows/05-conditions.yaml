@@ -3,6 +3,10 @@ name: conditions Workflow
 # triggers
 on:
   push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }} # conditions-main
+  cancel-in-progress: false # we can trigger workflow 
        
 # A workflow run is made up of one or more jobs
 jobs:
@@ -16,6 +20,7 @@ jobs:
       - name: on main branch
         if: github.ref_name == 'main'
         run: |
+          sleep 25
           echo "We are in Main branch"
 
       - name: on other branch
