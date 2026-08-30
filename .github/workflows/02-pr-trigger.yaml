@@ -16,5 +16,6 @@ jobs:
       - name: Run Hello World
         run: echo "Hello, World GitHub Actions!"
 
+      # Step 2: getting the event data
       - name: getting the event data
         run: cat "$GITHUB_EVENT_PATH"
