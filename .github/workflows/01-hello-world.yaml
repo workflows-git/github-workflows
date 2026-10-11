@@ -1,4 +1,4 @@
-```yaml
+
 name: Hello World Workflow
 
 # Triggers
@@ -35,4 +35,3 @@ jobs:
       # Step 5: Display the runner user
       - name: Show Current User
         run: whoami
-```
